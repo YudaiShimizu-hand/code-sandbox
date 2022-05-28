@@ -15,19 +15,36 @@ const onclickAdd = () => {
   const completeButton = document.createElement("button");
   completeButton.innerText = "完了";
   completeButton.addEventListener("click", () => {
-    alert();
+    deleteFormInconmpleteList(completeButton.parentNode);
+    const addTarget = completeButton.parentNode;
+    const text = addTarget.firstElementChild.innerText;
+    addTarget.textContent = null;
+
+    const li = document.createElement("li");
+    li.innerText = text;
+
+    const backButton = document.createElement("button");
+    backButton.innerText = "削除";
+
+    addTarget.appendChild(li);
+    addTarget.appendChild(backButton);
+
+    document.getElementById("complete-list").appendChild(addTarget);
   });
 
   const deleteButton = document.createElement("button");
   deleteButton.innerText = "削除";
   deleteButton.addEventListener("click", () => {
-    const deleteTarget = deleteButton.parentNode;
-    document.getElementById("incomplete-list").removeChild(deleteTarget);
+    deleteFormInconmpleteList(deleteButton.parentNode);
   });
 
   div.appendChild(li);
   div.appendChild(completeButton);
   div.appendChild(deleteButton);
+};
+
+const deleteFormInconmpleteList = (target) => {
+  document.getElementById("incomplete-list").removeChild(target);
 };
 
 document
