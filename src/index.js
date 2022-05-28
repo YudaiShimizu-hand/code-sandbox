@@ -24,7 +24,13 @@ const onclickAdd = () => {
     li.innerText = text;
 
     const backButton = document.createElement("button");
-    backButton.innerText = "削除";
+    backButton.innerText = "戻す";
+    backButton.addEventListener("click", () => {
+      const deleteTarget = backButton.parentNode;
+      document.getElementById("complete-list").removeChild(deleteTarget);
+
+      const text = backButton.parentNode.firstElementChild.innerText;
+    });
 
     addTarget.appendChild(li);
     addTarget.appendChild(backButton);
